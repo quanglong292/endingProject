@@ -1,0 +1,91 @@
+.timeLine {
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    margin: 20px 0;
+}
+.TabpaneContainer {
+    width: 75%; 
+    margin: 0 auto; 
+    height: 500px; 
+    overflow: auto;
+    border: 2px solid #4b4a4a54;
+    padding: 15px;
+    border-radius: 10px;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    .col-3 {
+        border-right: 2px solid #4b4a4a54;
+        // border-bottom: 2px solid #4b4a4a54;
+        .nav-link {
+            border-bottom: 2px solid #4b4a4a54;
+            border-radius: 0;
+            text-align: center;
+            background-color: transparent;
+            opacity: 0.7;
+            color: #108f3e;
+            &.active {
+                background-color: transparent;
+                color: #108f3e;
+            }
+        }
+        .active {
+            opacity: 1;
+            // background-color: transparent;
+        }
+    }
+}
+.movieAndTime {
+    .cimenaUnitMovieName {
+        display: flex;
+        align-items: center;
+        .unitMovieNameContent {
+            .contentName {
+                font-size: 16px;
+                font-weight: bold;
+                span {
+                    font-size: 14px;
+                    background-color: tomato;
+                    font-weight: bold;
+                    padding: 2px 8px;
+                    color: white;
+                    border-radius: 8px;
+                    margin: 0 5px 10px 5px;
+                }
+            }
+            .miniContent {
+                font-size: 12px;
+                margin-left: 5px;
+            }
+        }
+    }
+    .cimenaUnitMovieTime {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        justify-content: flex-start;
+        .timeLineTime {
+            padding: 5px 8px;
+            background-color: rgba(246,246,246,.5);
+            border-radius: 3px;
+            border: 1px solid #e4e4e4;
+            margin: 2px 2px 2px 0;
+            display: inline;
+            text-align: center;
+            font-size: smaller;
+            font-style: italic;
+            color: #9b9b9b;
+            .startTime {
+                color: #108f3e;
+                font-weight: bold;
+                font-size: 17px;
+                font-style: normal;
+            }
+        }
+    }
+}
+
+.tab-content > .tab-pane {
+    display: block;
+}

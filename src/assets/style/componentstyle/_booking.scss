@@ -1,0 +1,88 @@
+.booking {
+    display: flex;
+    .totalAmount {
+        width: 25%;
+        height: 200px;
+        top: 70px;
+        right: 0;
+        padding: 15px;
+        margin: 20px 100px 0 0;
+        position: fixed;
+        z-index: 1;
+        background-color: rgba(145, 160, 160, 0.315);
+        color: rgb(90, 88, 88);
+        h3 {
+            border-bottom: 1px solid black;
+            font-weight: bold;
+        }
+        span {
+            float: right;
+        }
+        span:last-child {
+            color: rgb(55, 163, 28);
+            font-weight: bold;
+        }
+        button {
+            padding: 5px 20px;
+            border: none;
+            background-color: tomato;
+            color: white;
+            margin: 25px 0 10px 0;
+            border-radius: 5px;
+            &:hover {
+                background-color: rgb(226, 64, 36);
+            }
+        }
+    }
+    .bookContainer {
+        .listChairContainer {
+            width: 60%;
+            padding: 25px 25px;
+            background-color: rgba(145, 160, 160, 0.315);
+            margin: 20px;
+            border-radius: 5px;
+            .screen {
+                width: 97%;
+                padding: 10px;
+                background-color: rgb(80, 77, 77);
+                color: white;
+                text-align: center;
+                margin-bottom: 20px;
+                border-radius: 15px 15px 0 0;
+            }
+            .listChair {
+                display: grid;
+                grid-template-columns: auto auto auto;
+                grid-gap: 5px;
+                justify-content: space-evenly;
+                .listMid {
+                    display: grid;
+                    grid-template-columns: auto auto auto auto auto auto ;
+    
+                }
+                button {
+                    padding: 5px;
+                    border: none;
+                    background-color: tomato;
+                    color: white;
+                    margin: 2px;
+                    &:hover {
+                        background-color: rgba(255, 99, 71, 0.596);
+                    }
+                }
+                .gheDangChon {
+                    background-color: rgb(55, 163, 28);
+                    &:hover {
+                        background-color: rgb(55, 163, 28);
+                    }
+                }
+                .gheDaDate {
+                    background-color: rgb(75, 72, 72);
+                    &:hover {
+                        background-color: rgb(75, 72, 72);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+*{
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    // height: 100%;
+    scroll-behavior: smooth;
+}
+@import './componentstyle/nav';
+@import './componentstyle//carousel';
+@import './componentstyle/movieslider';
+@import './componentstyle/tabpane';
+@import './componentstyle//timeline';
+@import './componentstyle/detailMovie';
+@import './componentstyle/mobileApp';
+@import './componentstyle/booking';
+@import './componentstyle//login';
