@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { postLogin } from '../../../store/actions/login.action';
 
-function Login () {
+function Login() {
     const dispatch = useDispatch();
     const history = useHistory();
     const [user, setUser] = useState({
@@ -12,7 +12,7 @@ function Login () {
     })
 
     const takeUser = (event) => {
-        const {value, name} = event.target;
+        const { value, name } = event.target;
         setUser({
             ...user,
             [name]: value,
@@ -25,13 +25,14 @@ function Login () {
     }
     return (
         <div className="loginContainer">
-            <form onSubmit={handleSubmit}>
-                <label for="#taikhoan">Tài khoản: </label>
-                <input type="text" id="taikhoan" name="taikhoan" onChange={takeUser}></input>
-                <label for="#matkhau">Mật khẩu: </label>
-                <input type="text" id="matkhau" name="matkhau" onChange={takeUser}></input>
-                <button type="submit" >dang nhap</button>
-            </form>
+            <div className="loginBackground">
+                <h3>Đăng nhập</h3>
+                <form onSubmit={handleSubmit}>
+                    <input type="text" id="taikhoan" name="taikhoan" onChange={takeUser} placeholder="Tài khoản"></input>
+                    <input type="text" id="matkhau" name="matkhau" onChange={takeUser} placeholder="Mật khẩu"></input>
+                    <button type="submit" >Đăng nhập</button>
+                </form>
+            </div>
         </div>
     )
 }

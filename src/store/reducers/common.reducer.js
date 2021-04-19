@@ -1,6 +1,6 @@
 import { LOADING_FALSE, LOADING_TRUE } from "../constanct/common.constanct";
 const initialState = {
-    loading: true,
+    loading: false,
 }
 
 const isLoading = (state = initialState, action) => {

@@ -2,13 +2,7 @@ import React from 'react'
 import { Route } from 'react-router'
 
 const LoginTemplate = (props) => {
-    return (    
-        <>
-            <header>Header</header>
-            <main>{props.children}</main>
-            <footer>Footer</footer>
-        </>    
-    )
+    return props.children
 }
 
 const RouterLoginTemplate = ({path, exact, Component}) => {
