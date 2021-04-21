@@ -1,34 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getMovieList } from "../../../store/actions/movieList.actions";
+import DanhSachPhim from "./dsPhim";
 
 export default function ControlBar() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getMovieList())
+  }, [])
+  const {movieList} = useSelector(state => state.movie)
+
+
   return (
     <div className="controlbar">
       <div className="dropdown">
-        <div className="btn-group">
-          <a
-            className="btn dropdown-toggle dropdownBtn"
-            href="#"
-            role="button"
-            id="dropdownPhim"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Phim
-          </a>
-          <div className="dropdown-menu" aria-labelledby="dropdownPhim">
-            <a className="dropdown-item" href="#">
-              Phim hanh dong
-            </a>
-            <a className="dropdown-item" href="#">
-              Phim ma
-            </a>
-            <a className="dropdown-item" href="#">
-              Phim ma hai
-            </a>
-          </div>
-        </div>
-
+        <DanhSachPhim dsPhim={movieList}/>
         <div className="btn-group">
           <a
             className="btn dropdown-toggle dropdownBtn"
