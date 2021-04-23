@@ -1,15 +1,11 @@
 import React, { useEffect } from "react";
 
-function DanhSachPhim(dsPhim) {
-
-  // console.log("ab:", dsPhim.dsPhim);
-  const click = () => {
-    console.log("clicked");
-  }
+function DanhSachPhim(props) {
+  const {dsPhim, handleMaPhim} = props
   const renderMovie = () => {
-    return dsPhim.dsPhim.map((item, index) => {
+    return dsPhim.map((item, index) => {
       return (
-        <option>
+        <option value={item.maPhim}>
           {item.tenPhim}
         </option>
       )
@@ -17,10 +13,11 @@ function DanhSachPhim(dsPhim) {
   }
 
   return (
-    <select onChange={click()}>
+    <select onChange={handleMaPhim}>
       <option>Chon Phim</option>
         {renderMovie()}
     </select>
   );
 }
+
 export default DanhSachPhim;

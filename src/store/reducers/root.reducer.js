@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import { getCinema } from "../actions/cinemaUnit.actions";
 import movieReducer from "../reducers/movieList.reducer";
 import getBookingReducer from "./booking.reducer";
 import getCinemaUnit from "./cinemaUnit.reducer";

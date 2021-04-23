@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getMovieDetail } from "../../../store/actions/movieDetail.action";
 import { getMovieList } from "../../../store/actions/movieList.actions";
 import DanhSachPhim from "./dsPhim";
+import DanhSachCumRap from "./dsCumRap";
+import NgayGioChieu from "./dsNgayChieu";
 
 export default function ControlBar() {
   const dispatch = useDispatch();
@@ -9,88 +12,29 @@ export default function ControlBar() {
     dispatch(getMovieList())
   }, [])
   const {movieList} = useSelector(state => state.movie)
+  const {movieDetail} = useSelector(state => state.movieDetail)
+  const {user} = useSelector(state => state.booking)
+  let [maPhim, setmaPhim] = useState("");
+  let [maCum, setmaCum] = useState("");
+  
 
+  const handleMaPhim = (e) => {
+    setmaPhim(maPhim = e.target.value)
+    dispatch(getMovieDetail(maPhim))
+  }
+
+  const handleMaCum = (e) => {
+    setmaCum(maCum = e.target.value)
+  }
 
   return (
     <div className="controlbar">
       <div className="dropdown">
-        <DanhSachPhim dsPhim={movieList}/>
-        <div className="btn-group">
-          <a
-            className="btn dropdown-toggle dropdownBtn"
-            href="#"
-            role="button"
-            id="dropdownThanhPho"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Thanh pho
-          </a>
-          <div className="dropdown-menu" aria-labelledby="dropdownThanhPho">
-            <a className="dropdown-item" href="#">
-              Ho chi minh
-            </a>
-            <a className="dropdown-item" href="#">
-              Can tho
-            </a>
-            <a className="dropdown-item" href="#">
-              Da Nang
-            </a>
-          </div>
-        </div>
-
-        <div className="btn-group">
-          <a
-            className="btn dropdown-toggle dropdownBtn"
-            href="#"
-            role="button"
-            id="dropdownMovieDate"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Ngày xem
-          </a>
-          <div className="dropdown-menu" aria-labelledby="dropdownMovieDate">
-            <a className="dropdown-item" href="#">
-              12/3/2021
-            </a>
-            <a className="dropdown-item" href="#">
-              12/3/2021
-            </a>
-            <a className="dropdown-item" href="#">
-              12/3/2021
-            </a>
-          </div>
-        </div>
-
-        <div className="btn-group">
-          <a
-            className="btn dropdown-toggle dropdownBtn"
-            href="#"
-            role="button"
-            id="dropdownMovieDate"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Suất chiếu
-          </a>
-          <div className="dropdown-menu" aria-labelledby="dropdownMovieDate">
-            <a className="dropdown-item" href="#">
-              1
-            </a>
-            <a className="dropdown-item" href="#">
-              2
-            </a>
-            <a className="dropdown-item" href="#">
-              3
-            </a>
-          </div>
-        </div>
+        <DanhSachPhim dsPhim={movieList} handleMaPhim={handleMaPhim}/>
+        <DanhSachCumRap phimId={maPhim} cumRap={movieDetail.heThongRapChieu} handleMaCum={handleMaCum}/>
+        <NgayGioChieu maCum={maCum} cumRap={movieDetail.heThongRapChieu} user={user}/>
       </div>
-      <button className="btn btn-success buyTicketBtn">Mua vé ngay</button>
+      {/* <button className="btn btn-success buyTicketBtn">Mua vé ngay</button> */}
     </div>
   );
 }
