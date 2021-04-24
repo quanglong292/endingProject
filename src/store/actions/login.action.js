@@ -11,7 +11,8 @@ export const postLogin = (taikhoan, matkhau, history) => {
                 matkhau,
             },
         }).then((res) => {
-            localStorage.getItem("userLogin", JSON.stringify(res.data))
+            localStorage.setItem("userLogin", JSON.stringify(res.data)
+            )
             dispatch(loginSucess(res.data))
             history.goBack()
         }).catch((err) => {

@@ -38,13 +38,13 @@ function Detail() {
     }
   }
 
-  const isLogin = (item) => {
-    if (user !== null) {
-        return `/booking/${item.maLichChieu}`
-    } else {
-      return `/login`
-    }
-  }
+  // const isLogin = (item) => {
+  //   if (user !== null) {  
+  //     return `/booking/${item.maLichChieu}`
+  //   } else {
+  //     return `/login`
+  //   }
+  // }
 
   const handleRenderTime = (item, index) => {
     var dateFormat = require("dateformat");
@@ -56,7 +56,7 @@ function Detail() {
         let dateFormated = dateFormat(item.ngayChieuGioChieu, "HH:MM")
           return (
             <div class="detailMovieTime">
-              <NavLink to={isLogin(item)} className="startTime">
+              <NavLink to={`/booking/${item.maLichChieu}`} className="startTime">
                   {dateFormated} 
               </NavLink>
               &nbsp;<span className="endTime">~ 11:00</span>

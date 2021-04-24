@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { postLogin } from '../../../store/actions/login.action';
 
 function Login() {
     const dispatch = useDispatch();
     const history = useHistory();
+    
+    const {maLichChieu} = useSelector(state => state.booking)
+    console.log(maLichChieu);
     const [user, setUser] = useState({
         taikhoan: "",
         matkhau: "",
@@ -30,7 +33,7 @@ function Login() {
                 <form onSubmit={handleSubmit}>
                     <input type="text" id="taikhoan" name="taikhoan" onChange={takeUser} placeholder="Tài khoản"></input>
                     <input type="text" id="matkhau" name="matkhau" onChange={takeUser} placeholder="Mật khẩu"></input>
-                    <button type="submit" >Đăng nhập</button>
+                    <button type="submit">Đăng nhập</button>
                 </form>
             </div>
         </div>
