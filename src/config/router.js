@@ -1,4 +1,6 @@
 import { faLessThanEqual } from "@fortawesome/free-solid-svg-icons";
+import Dashboard from "../pages/admin/dashboard";
+import MainAdminPage from "../pages/admin/userlist";
 import Booking from "../pages/main/booking";
 import Detail from "../pages/main/detail";
 import Home from "../pages/main/home";
@@ -19,6 +21,14 @@ export const mainRouter = [
         path: "/booking/:maLichChieu",
         exact: false,
         Component: Booking,
+    }
+]
+
+export const adminRouter = [
+    {
+        path:"/admin/userlist",
+        exact: true,
+        Component: MainAdminPage,
     }
 ]
 

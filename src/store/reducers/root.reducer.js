@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import movieReducer from "../reducers/movieList.reducer";
+import userReducer from "./admin/users.reducer";
 import getBookingReducer from "./booking.reducer";
 import getCinemaUnit from "./cinemaUnit.reducer";
 import isLoading from "./common.reducer";
@@ -10,6 +11,7 @@ const rootReducer = combineReducers ({
     movieDetail: movieDetailReducer,
     booking: getBookingReducer,
     loading: isLoading,
+    users: userReducer,
 });
 
 export default rootReducer;

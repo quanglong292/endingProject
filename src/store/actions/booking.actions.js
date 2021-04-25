@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Redirect } from "react-router";
 import { GET_BOOKING_FAILED, GET_BOOKING_SUCCESS } from "../constanct/booking.constanct";
 import { startLoading, stopLoading } from "./common.actions";
 

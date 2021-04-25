@@ -1,4 +1,4 @@
-import { GET_MOVIEDETAIL_FAILED, GET_MOVIEDETAIL_SUCCESS } from "../constanct/detailMovie.constanct";
+import {GET_MOVIEDETAIL_SUCCESS } from "../constanct/detailMovie.constanct";
 
 const initialState = {
     movieDetail: {},

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCinema, getCinemaUnit } from "../../../store/actions/cinemaUnit.actions";
 import * as TypeMovie from "../../../services/Enums/movie"
+import { NavLink } from "react-router-dom";
 function TimeLine() {
     const dispatch = useDispatch();
     const [maCumRap, setMaCumRap] = useState(TypeMovie.MOVIE_CINEMA_TYPE.BHDSTAR);
@@ -15,11 +16,9 @@ function TimeLine() {
     useEffect(() => {
         dispatch(getCinema());
     }, [])
-    const [defaultCumRap, setFirstCumRap] = useState("");
 
     const { cinemaUnit, cinema } = useSelector((state) => state.cinema);
 
-    const {loading} = useSelector((state) => state.loading)
     const renderCinemaSection = () => {
         if (maCumRap) {
             return (
@@ -112,7 +111,7 @@ function TimeLine() {
             let formatedApiMovieTime = dateFormat(item.ngayChieuGioChieu, "HH:MM")
             return (
                 <div className="timeLineTime">
-                    <a className="startTime">{formatedApiMovieTime}</a> ~ 11:00
+                    <NavLink className="startTime" to={`/booking/${item.maLichChieu}`}>{formatedApiMovieTime}</NavLink> ~ 11:00
                 </div>
             )
         })

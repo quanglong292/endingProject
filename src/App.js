@@ -6,9 +6,10 @@ import MovieSlider from "./pages/main/movieslider";
 import {BrowserRouter, Switch} from 'react-router-dom';
 import TimeLine from "./pages/main/timeline";
 import Playground from "./playground";
-import { mainRouter, userRouter } from "./config/router";
+import { adminRouter, mainRouter, userRouter } from "./config/router";
 import RouterMainTemplate from "./templates/main";
 import RouterLoginTemplate from "./templates/login/index";
+import RouterAdminTemplate from "./templates/admin";
 // import { Carousel } from 'bootstrap';
 const renderMainTemplate = () => {
   return mainRouter.map(({path, exact, Component}) => {
@@ -16,6 +17,14 @@ const renderMainTemplate = () => {
       <RouterMainTemplate path={path} exact={exact} Component={Component}/>
     )
   })  
+}
+
+const renderAdminTemplate = () => {
+  return adminRouter.map(({path, exact, Component}) => {
+    return (
+      <RouterAdminTemplate path={path} exact={exact} Component={Component}/>
+    )
+  })
 }
 
 const renderLoginTemplate = () => {
@@ -32,6 +41,7 @@ function App() {
       <Switch>
         {renderMainTemplate()}
         {renderLoginTemplate()}
+        {renderAdminTemplate()}
       </Switch>
     </BrowserRouter>
     </>  
