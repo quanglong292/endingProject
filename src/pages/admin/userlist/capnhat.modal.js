@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+
 function CapNhatModal(props) {
     const {item, index, dispatch, updateUsers} = props;
     const [users, setUsers] = useState({
@@ -12,6 +13,8 @@ function CapNhatModal(props) {
         hoTen: ''
     })
 
+ 
+
     const takeUsers = (e) => {
         const {value, id} = e.target;
         setUsers({
@@ -21,7 +24,9 @@ function CapNhatModal(props) {
     }
 
     const handleDispatch = () => {
-        dispatch(updateUsers(users.taiKhoan, users.matKhau, users.email, users.soDt, users.maNhom, users.maLoaiNguoiDung, users.hoTen))
+        
+            dispatch(updateUsers(users.taiKhoan, users.matKhau, users.email, users.soDt, users.maNhom, users.maLoaiNguoiDung, users.hoTen))
+        
     }
 
     return (
@@ -41,11 +46,12 @@ function CapNhatModal(props) {
                             <form>
                                 <div>
                                     <label for="#taiKhoan">Tài khoản: </label>
-                                    <input type="text" id="taiKhoan" onChange={takeUsers} defaultValue={item.taiKhoan} disabled="true"></input>
+                                    <input type="text" id="taiKhoan" onChange={takeUsers} defaultValue={item.taiKhoan} disabled={true}></input>
                                 </div>
                                 <div>
                                     <label for="#matKhau">Mật khẩu: </label>
                                     <input type="text" id="matKhau" onChange={takeUsers} defaultValue={item.matKhau}></input>
+                                    
                                 </div>
                                 <div>
                                     <label for="#email">E-mail: </label>

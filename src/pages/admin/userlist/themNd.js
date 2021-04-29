@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import ValidaUser from './valida.userlist';
 
 export default function ThemNguoiDung({addUsers, dispatch}) {
     const [users, setUsers] = useState({
@@ -11,6 +12,9 @@ export default function ThemNguoiDung({addUsers, dispatch}) {
         hoTen: ''
     })
 
+    const [errors, setErrors] = useState({});
+    let [isTrue, setIsTrue] = useState(false);
+
     const takeUsers = (e) => {
         const {value, id} = e.target;
         setUsers({
@@ -21,8 +25,19 @@ export default function ThemNguoiDung({addUsers, dispatch}) {
 
     const handleAddUsers = (e) => {
         e.preventDefault()
-        dispatch(addUsers(users.taiKhoan, users.matKhau, users.email, users.soDt, users.maNhom, users.maLoaiNguoiDung, users.hoTen));
+        setErrors(ValidaUser(users))
+        if (isTrue) {
+            dispatch(addUsers(users.taiKhoan, users.matKhau, users.email, users.soDt, users.maNhom, users.maLoaiNguoiDung, users.hoTen));
+        }
     }
+
+    useEffect(() => {
+        setIsTrue(() => {
+            if(Object.keys(errors).length == 0) {
+                isTrue = true;
+            }
+        })
+    })
 
     return (
         <div className="themNd">
@@ -35,6 +50,7 @@ export default function ThemNguoiDung({addUsers, dispatch}) {
                 <div>
                     <label for="#matKhau">Mật khẩu: </label>
                     <input type="text" id="matKhau" onChange={takeUsers}></input>
+                    {errors.matKhau && <p>{errors.matKhau}</p>}
                 </div>
                 <div>
                     <label for="#email">E-mail: </label>

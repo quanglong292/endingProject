@@ -6,7 +6,7 @@ const AdminTemplate = (props) => {
     return (
         <div className="adminContainer">
             <Dashboard/>
-            <main>{props.children}</main>
+            {props.children}
         </div>
     )
 }
