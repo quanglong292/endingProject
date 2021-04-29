@@ -2,12 +2,16 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 
 function Dashboard() {
+    
+
+
+
     return (
         <div className="dashboard">
             <NavLink to="/login">Đăng nhập</NavLink>
-            <a to="">Home</a>
-            <a to="">Danh sách người dùng</a>
-            <a to="">Danh sách phim</a>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/admin/userlist">Danh sách người dùng</NavLink>
+            <NavLink to="/admin/movies">Danh sách phim</NavLink>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers,updateUsers, addUsers} from '../../../store/actions/admin/users.action';
+import { getUsers,updateUsers, addUsers, deleteUsers} from '../../../store/actions/admin/users.action';
 import CapNhatModal from './capnhat.modal';
 import ThemNguoiDung from './themNd';
 
@@ -10,6 +10,11 @@ function MainAdminPage () {
         dispatch(getUsers());
     }, [])
     const {users} = useSelector(state => state.users)
+
+    const handleDelete = (tk) => {
+        dispatch(deleteUsers(tk))
+    }
+
     const renderUser = () => {
         return users.map((item, index) => {
             return (
@@ -24,23 +29,21 @@ function MainAdminPage () {
                     <td className="myBtn">
                         <CapNhatModal dispatch={dispatch} updateUsers={updateUsers} item={item} index={index}/>
                         {/* <button className="btn btn-outline-primary">Sửa</button> */}
-                        <button className="btn btn-outline-danger">Xóa</button>
+                        <button className="btn btn-outline-danger" onClick={() => {handleDelete(item.taiKhoan)}}>Xóa</button>
                     </td>
                 </tr>
             )
         })
     }
-
     
-
     return (
         <>
             <div className="usersTable">
                 <table className="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tài khoản</th>
+                            <th scope="col-2">#</th>
+                            <th scope="col-2">Tài khoản</th>
                             <th scope="col">Họ tên</th>
                             <th scope="col">E-mail</th>
                             <th scope="col">Phone</th>

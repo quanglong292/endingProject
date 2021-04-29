@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const user = JSON.parse(localStorage.getItem("userLogin"))
-const token = user.accessToken
+export const token = user.accessToken
 export const getUsers = () => {
     return (dispatch) => {
         axios({
@@ -79,6 +79,28 @@ export const addUsers = (taiKhoan, matKhau, email, soDt, maNhom, maLoaiNguoiDung
 const addUsersSucc = (res) => {
     return {
         type: "ADD_USERSSUCCESS",
+        payload: res
+    }
+}
+
+export const deleteUsers = (taiKhoan) => {
+    return (dispatch) => {
+        axios({
+            method: "DELETE",
+            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((res) => {
+            dispatch(deleteUsersSucc(res.data))
+            alert("Xoa thanh cong");
+        })
+    }
+} 
+
+const deleteUsersSucc = (res) => {
+    return {
+        type: "DELETE_USERSSUCCESS",
         payload: res
     }
 }

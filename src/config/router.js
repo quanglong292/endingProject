@@ -1,5 +1,4 @@
-import { faLessThanEqual } from "@fortawesome/free-solid-svg-icons";
-import Dashboard from "../pages/admin/dashboard";
+import MoviesAdmin from "../pages/admin/movies";
 import MainAdminPage from "../pages/admin/userlist";
 import Booking from "../pages/main/booking";
 import Detail from "../pages/main/detail";
@@ -29,6 +28,11 @@ export const adminRouter = [
         path:"/admin/userlist",
         exact: true,
         Component: MainAdminPage,
+    },
+    {
+        path:"/admin/movies",
+        exact: true,
+        Component: MoviesAdmin,
     }
 ]
 
