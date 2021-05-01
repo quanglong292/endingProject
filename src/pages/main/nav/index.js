@@ -31,7 +31,7 @@ function Nav () {
     } else {
       return (
         <a className="nav-link">
-          <span className="">Xin chào {user}</span>
+          <span className="">Xin chào {user.hoTen}</span>
           <span className="spaceingLine">|</span>
         </a>
       )

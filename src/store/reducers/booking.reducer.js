@@ -30,7 +30,7 @@ const getBookingReducer = (state = initialState, action) => {
       return { ...state };
     }
     case LOGIN_SUCCESS: {
-      return {...state, user: payload.hoTen}
+      return {...state, user: payload}
     }
     
     default:

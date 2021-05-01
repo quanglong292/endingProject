@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ValidaUser from './valida.userlist';
 
-export default function ThemNguoiDung({addUsers, dispatch}) {
+export default function ThemNguoiDung({ addUsers, dispatch, usersList }) {
     const [users, setUsers] = useState({
         taiKhoan: '',
         matKhau: '',
@@ -14,9 +14,10 @@ export default function ThemNguoiDung({addUsers, dispatch}) {
 
     const [errors, setErrors] = useState({});
     let [isTrue, setIsTrue] = useState(false);
+    let [isExist, setIsExist] = useState(false);
 
     const takeUsers = (e) => {
-        const {value, id} = e.target;
+        const { value, id } = e.target;
         setUsers({
             ...users,
             [id]: value,
@@ -25,7 +26,9 @@ export default function ThemNguoiDung({addUsers, dispatch}) {
 
     const handleAddUsers = (e) => {
         e.preventDefault()
-        setErrors(ValidaUser(users))
+        setIsExist(() => isExist = usersList.some(item => users.taiKhoan.trim() === item.taiKhoan))
+        console.log(isExist);
+        setErrors(ValidaUser(users, isExist))
         if (isTrue) {
             dispatch(addUsers(users.taiKhoan, users.matKhau, users.email, users.soDt, users.maNhom, users.maLoaiNguoiDung, users.hoTen));
         }
@@ -33,7 +36,7 @@ export default function ThemNguoiDung({addUsers, dispatch}) {
 
     useEffect(() => {
         setIsTrue(() => {
-            if(Object.keys(errors).length == 0) {
+            if (Object.keys(errors).length == 0) {
                 isTrue = true;
             }
         })
@@ -44,25 +47,26 @@ export default function ThemNguoiDung({addUsers, dispatch}) {
             <h3>Thêm người dùng</h3>
             <form onSubmit={handleAddUsers}>
                 <div>
-                    <label for="#taiKhoan">Tài khoản: </label>
+                    <label htmlFor="#taiKhoan">Tài khoản: </label>
                     <input type="text" id="taiKhoan" onChange={takeUsers}></input>
                 </div>
-                <div>
-                    <label for="#matKhau">Mật khẩu: </label>
-                    <input type="text" id="matKhau" onChange={takeUsers}></input>
-                    {errors.matKhau && <p>{errors.matKhau}</p>}
-                </div>
-                <div>
-                    <label for="#email">E-mail: </label>
-                    <input type="text" id="email" onChange={takeUsers}></input>
-                </div>
+                {errors.taiKhoan && <div className="errors">{errors.taiKhoan}</div>}
 
                 <div>
-                    <label for="#soDt">Phone: </label>
+                    <label htmlFor="#matKhau">Mật khẩu: </label>
+                    <input type="text" id="matKhau" onChange={takeUsers}></input>
+                </div>
+                {errors.matKhau && <div className="errors">{errors.matKhau}</div>}
+                <div>
+                    <label htmlFor="#email">E-mail: </label>
+                    <input type="text" id="email" onChange={takeUsers}></input>
+                </div>
+                <div>
+                    <label htmlFor="#soDt">Phone: </label>
                     <input type="text" id="soDt" onChange={takeUsers}></input>
                 </div>
                 <div>
-                    <label for="#maNhom">Mã nhóm: </label>
+                    <label htmlFor="#maNhom">Mã nhóm: </label>
                     <select id="maNhom" onChange={takeUsers}>
                         <option>Mã nhóm</option>
                         <option value="GP01">GP01</option>
@@ -70,7 +74,7 @@ export default function ThemNguoiDung({addUsers, dispatch}) {
                     </select>
                 </div>
                 <div>
-                    <label for="#maLoaiNguoiDung">Mã người dùng: </label>
+                    <label htmlFor="#maLoaiNguoiDung">Mã người dùng: </label>
                     <select id="maLoaiNguoiDung" onChange={takeUsers}>
                         <option >Mã loại người dùng</option>
                         <option value="KhachHang">Khách hàng</option>
@@ -78,10 +82,12 @@ export default function ThemNguoiDung({addUsers, dispatch}) {
                     </select>
                 </div>
                 <div>
-                    <label for="#hoTen">Họ tên: </label>
+                    <label htmlFor="#hoTen">Họ tên: </label>
                     <input type="text" id="hoTen" onChange={takeUsers}></input>
                 </div>
-                <button className="btn btn-outline-success" type="submit">Thêm</button>
+                <span>
+                    <button className="btn btn-outline-success" type="submit">Thêm</button>
+                </span>
             </form>
 
         </div>

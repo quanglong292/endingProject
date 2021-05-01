@@ -59,10 +59,20 @@
         input {
             float: right;
             width: 55%;
+            // margin-left: 20%;
+            // display: block;
         }
         select {
             float: right;
             width: 55%;
+            // margin-left: 20%;
+            // display: block;
+        }
+        .errors {
+            color: red;
+            // margin-left: 20%;
+            font-size: smaller;
+            // float: right;
         }
     }
 }

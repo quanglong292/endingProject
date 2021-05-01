@@ -61,7 +61,7 @@ function MainAdminPage () {
                 <form className="inputSearch">
                     <input placeholder="Search" id="searching"></input>
                 </form>
-                <ThemNguoiDung addUsers={addUsers} dispatch={dispatch}/>
+                <ThemNguoiDung addUsers={addUsers} dispatch={dispatch} usersList={users}/>
             </div>
             
         </>
