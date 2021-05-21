@@ -1,0 +1,24 @@
+.moviesTable {
+    max-width: 1440px;
+    // height: 95%;
+    overflow: scroll;
+    .table {
+        width: 100%;
+        border: 2px solid black;
+    }
+}
+
+.themPhim-modal {
+    form {
+        input, select, button {
+            width: 50%;
+            float: right;
+        }
+    }
+}
+.errors {
+    color: red;
+    // margin-left: 20%;
+    font-size: smaller;
+    // float: right;
+}

@@ -16,7 +16,7 @@ export const postLogin = (taikhoan, matkhau, history) => {
             dispatch(loginSucess(res.data))
             history.goBack()
         }).catch((err) => {
-            dispatch(loginFailed(err))
+            dispatch(loginFailed())
         })
     }
 }
@@ -28,10 +28,10 @@ const loginSucess = (res) => {
     }
 }
 
-const loginFailed = (err) => {
+const loginFailed = () => {
     return {
         type: LOGIN_FAILED,
-        payload: err
+        payload: "Tài khoản hoặc mật khẩu không đúng"
     }
 }
 

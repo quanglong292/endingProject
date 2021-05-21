@@ -3,6 +3,7 @@ export default function ValidaUser(users, isExist) {
     const errors = {}
     const {taiKhoan, matKhau} = users
     
+    
     if (!matKhau) {
         // "" = false => !false = true
         errors.matKhau = "Cần cung cấp mật khẩu!"

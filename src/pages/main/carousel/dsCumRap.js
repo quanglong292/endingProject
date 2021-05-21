@@ -13,7 +13,7 @@ function DanhSachCumRap (props) {
     }
     return (
         <select onChange={handleMaCum}>
-            <option>Chon Cum Rap</option>
+            <option>Chọn rạp</option>
             {renderCumRap()}
         </select>
     )

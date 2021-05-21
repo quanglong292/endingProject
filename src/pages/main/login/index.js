@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { postLogin } from '../../../store/actions/login.action';
@@ -7,25 +7,32 @@ function Login() {
     const dispatch = useDispatch();
     const history = useHistory();
     
-    const {maLichChieu} = useSelector(state => state.booking)
-    console.log(maLichChieu);
-    const [user, setUser] = useState({
+    const {maLichChieu, err, user} = useSelector(state => state.booking)
+    
+    const [userState, setUserState] = useState({
         taikhoan: "",
         matkhau: "",
     })
 
+    let [valida, setValida] = useState(err)
+
     const takeUser = (event) => {
+        setValida(valida = "")
         const { value, name } = event.target;
-        setUser({
-            ...user,
+        setUserState({
+            ...userState,
             [name]: value,
         })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(postLogin(user.taikhoan, user.matkhau, history));
+        dispatch(postLogin(userState.taikhoan, userState.matkhau, history));
+        if (err !== "") {
+            setValida(valida += err)
+        }
     }
+
     return (
         <div className="loginContainer">
             <div className="loginBackground">
@@ -33,6 +40,7 @@ function Login() {
                 <form onSubmit={handleSubmit}>
                     <input type="text" id="taikhoan" name="taikhoan" onChange={takeUser} placeholder="Tài khoản"></input>
                     <input type="text" id="matkhau" name="matkhau" onChange={takeUser} placeholder="Mật khẩu"></input>
+                    {valida ? <p style={{color: "red"}}>{valida}</p> : ""}
                     <button type="submit">Đăng nhập</button>
                 </form>
             </div>

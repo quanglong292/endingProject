@@ -14,7 +14,7 @@ function DanhSachPhim(props) {
 
   return (
     <select onChange={handleMaPhim}>
-      <option>Chon Phim</option>
+      <option>Chọn phim</option>
         {renderMovie()}
     </select>
   );

@@ -27,7 +27,6 @@ export default function ThemNguoiDung({ addUsers, dispatch, usersList }) {
     const handleAddUsers = (e) => {
         e.preventDefault()
         setIsExist(() => isExist = usersList.some(item => users.taiKhoan.trim() === item.taiKhoan))
-        console.log(isExist);
         setErrors(ValidaUser(users, isExist))
         if (isTrue) {
             dispatch(addUsers(users.taiKhoan, users.matKhau, users.email, users.soDt, users.maNhom, users.maLoaiNguoiDung, users.hoTen));

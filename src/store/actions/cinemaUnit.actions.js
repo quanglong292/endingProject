@@ -100,3 +100,17 @@ const getCinemaFailed = (err) => {
     payload: err,
   };
 };
+
+export const getDefaultCinema = () => {
+  return (dispatch) => {
+    axios ({
+      method: "GET",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=BHDSTAR&maNhom=GP01",
+    }).then((res) => {
+      dispatch({
+        type: "GET_DEFAULT_CINEMA",
+        payload: res.data
+      })
+    }).catch(err => err)
+  }
+}

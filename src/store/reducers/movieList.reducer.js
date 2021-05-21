@@ -5,6 +5,7 @@ import {
 
 const initialState = {
     movieList: [],
+    movieListPagi:[],
     error: "",
 }
 
@@ -16,6 +17,9 @@ const movieReducer = (state = initialState, action) => {
         };
         case GET_MOVIELIST_FAILED: {
             return {...state, error: payload};
+        };
+        case "GET_MOVIELISTPAGI_SUCCESS": {
+            return {...state, movieListPagi: payload}
         }
 
         default:

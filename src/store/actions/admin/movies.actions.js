@@ -1,7 +1,8 @@
 import axios from "axios";
-import { token } from "./users.action";
 
 export const addMovies = (maPhim, tenPhim, biDanh, trailer, hinhAnh, moTa, maNhom, ngayKhoiChieu, danhGia) => {
+    const user = JSON.parse(localStorage.getItem("userLogin"))
+    const token = user.accessToken
     return (dispatch) => {
         axios({
             method: "POST",

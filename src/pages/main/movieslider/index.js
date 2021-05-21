@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import sliderImg1 from "../../../assets/img/slider-img1.png";
-import { getMovieList } from "../../../store/actions/movieList.actions";
+import { getMovieList, getMovieListPagination } from "../../../store/actions/movieList.actions";
 import { NavLink } from "react-router-dom";
 
 // Fontawesome Icons
@@ -21,6 +21,7 @@ function MovieSlider() {
   const {movieList} = useSelector(state => state.movie);
   useEffect(() => {
     dispatch(getMovieList());
+    dispatch(getMovieListPagination(1));
   }, []);
 
   const renderMovieSlider = () => {

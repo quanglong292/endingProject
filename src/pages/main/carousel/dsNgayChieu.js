@@ -68,14 +68,14 @@ function NgayGioChieu(props) {
     const handleNavLink = () => {
         if (user !== null) {
             return (
-                <NavLink to={`/booking/${maLichChieu}`}>
-                    Mua ve
+                <NavLink to={`/booking/${maLichChieu}`} className="muave-btn">
+                    Mua vé
                 </NavLink>
             )
         } else {
             return (
-                <NavLink to={`/login`}>
-                    Mua ve
+                <NavLink to={`/login`} className="muave-btn-disabled">
+                    Mua vé
                 </NavLink>
             )
         }
@@ -84,11 +84,11 @@ function NgayGioChieu(props) {
     return (
         <>
             <select onChange={handleTime}>
-                <option>Chon Ngay</option>
+                <option>Chọn ngày</option>
                 {handleRender()}
             </select>
             <select onChange={handleMaLichChieu}>
-                <option>Chon gio chieu</option>
+                <option>Chọn giờ chiếu</option>
                 {handleRenderTime()}
             </select>
             {handleNavLink()}

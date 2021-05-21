@@ -19,6 +19,9 @@ export default function ControlBar() {
   
 
   const handleMaPhim = (e) => {
+    if (!user) {
+      alert("Vui lòng đăng nhập trước khi tìm xuất chiếu!")
+    } 
     setmaPhim(maPhim = e.target.value)
     dispatch(getMovieDetail(maPhim))
   }

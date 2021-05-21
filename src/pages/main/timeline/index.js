@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCinema, getCinemaUnit } from "../../../store/actions/cinemaUnit.actions";
+import { getCinema, getCinemaUnit, getDefaultCinema } from "../../../store/actions/cinemaUnit.actions";
 import * as TypeMovie from "../../../services/Enums/movie"
 import { NavLink } from "react-router-dom";
 function TimeLine() {
@@ -14,10 +14,11 @@ function TimeLine() {
         }
     };
     useEffect(() => {
+        dispatch(getDefaultCinema());
         dispatch(getCinema());
     }, [])
 
-    const { cinemaUnit, cinema } = useSelector((state) => state.cinema);
+    const { cinemaUnit, cinema, defaultCinema } = useSelector((state) => state.cinema);
 
     const renderCinemaSection = () => {
         if (maCumRap) {
@@ -118,7 +119,7 @@ function TimeLine() {
         return mappedApiDate;
     };
 
-    
+
     const handleRenderCinemaUnitMovies = () => {
         if (cinemaUnit[0]) {
             return cinemaUnit[0].lstCumRap.map((item, index) => {
@@ -148,58 +149,128 @@ function TimeLine() {
         }
     };
 
-    const handleOnLoad = (index) => {
-
-    }
-
     const renderCinema = () => {
         return cinema?.map((item, index) => {
             return (
                 <a
-                className="nav-link"
-                id={item.maHeThongRap}
-                data-toggle="pill"
-                href={"#v-pills-" + item.maHeThongRap}
-                role="tab"
-                aria-controls={"v-pills-" + item.maHeThongRap}
-                aria-selected="true"
-                onClick={() => {
-                    handleMaHeThongRap(item.maHeThongRap);
-                }}
-                
-            >   
-                <img
-                    src={item.logo}
-                    width="50px"
-                ></img>
-            </a>
+                    className="nav-link"
+                    id={item.maHeThongRap}
+                    data-toggle="pill"
+                    href={"#v-pills-" + item.maHeThongRap}
+                    role="tab"
+                    aria-controls={"v-pills-" + item.maHeThongRap}
+                    aria-selected="true"
+                    onClick={() => {
+                        handleMaHeThongRap(item.maHeThongRap);
+                    }}
+
+                >
+                    <img
+                        src={item.logo}
+                        width="50px"
+                    ></img>
+                </a>
             )
         })
     }
+
+    const isActive = (index) => {
+        if (index) {
+            return "active"
+        }
+    }
+
+    const renderDefaultCinemaUnit = () => {
+        return defaultCinema[0]?.lstCumRap.map((item, index) => {
+            return (
+                <a className={"nav-link " + (index == 0 ? "active" : "")} id={"v-pills-home-tab" + item.maCumRap} data-toggle="pill" href={"#v-pills-home" + item.maCumRap} role="tab" aria-controls="v-pills-home" aria-selected="true">{item.tenCumRap}</a>
+            )
+        })
+    }
+
+    const renderDefaultCinemaUnitMovie = () => {
+        return defaultCinema[0]?.lstCumRap.map((item, index) => {
+            return (
+                <div
+                    key={index}
+                    className={"tab-pane fade show " + (index == 0 ? "active" : "")}
+                    id={"v-pills-home" + item.maCumRap}
+                    role="tabpanel"
+                    aria-labelledby={"v-pills-home-tab" + item.maCumRap}
+                >
+                    {item.danhSachPhim.map((item, index) => {
+                        return (
+                            <div key={index} className="movieAndTime">
+                                <div className="cimenaUnitMovieName">
+                                    {renderCinemaUnitMovieName(item)}
+                                </div>
+                                <div className="cimenaUnitMovieTime">
+                                    {renderCinemaUnitMovieTime(item)}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        });
+    }
+
     return (
         <div className="timeLine">
             <h2>Lịch chiếu</h2>
-        <div className="TabpaneContainer">
-            <div className="row">
-                <div className="col-3">
-                    <div
-                        className="nav flex-column nav-pills"
-                        id="v-pills-tab"
-                        role="tablist"
-                        aria-orientation="vertical"
-                    >
-                        {renderCinema()}
-                    </div>
-                </div>
+            <div className="TabpaneContainer">
+                <div className="row">
+                    <div className="col-3">
+                        <div
+                            className="nav flex-column nav-pills"
+                            id="v-pills-tab"
+                            role="tablist"
+                            aria-orientation="vertical"
+                        >
+                            <a
+                                className="nav-link active"
+                                id={defaultCinema[0]?.maHeThongRap}
+                                data-toggle="pill"
+                                href={"#v-pills-" + defaultCinema[0]?.maHeThongRap}
+                                role="tab"
+                                aria-controls={"v-pills-" + defaultCinema[0]?.maHeThongRap}
+                                aria-selected="true"
 
-                {/* BHD section */}
-                <div className="col-9">
-                    <div className="tab-content" id="v-pills-tabContent">
-                        {renderCinemaSection()}
-                        {/* <div className="tab-pane fade" id="v-pills-CGV" role="tabpanel" aria-labelledby="CGV">CGV</div> */}
+                            >
+                                <img
+                                    src={defaultCinema[0]?.logo}
+                                    width="50px"
+                                ></img>
+                            </a>
+                            {renderCinema()}
+                        </div>
+                    </div>
+
+                    {/* BHD section */}
+                    <div className="col-9">
+                        <div class="tab-content" id="v-pills-tabContent">
+
+                            <div className="tab-pane fade show active" id={"v-pills-" + defaultCinema[0]?.maHeThongRap} role="tabpanel" aria-labelledby={defaultCinema[0]?.maHeThongRap}>
+                                <div className="row">
+                                    <div className="col-3">
+                                        <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                            {renderDefaultCinemaUnit()}
+                                        </div>
+                                    </div>
+                                    <div className="col-9">
+                                        <div className="tab-content" id="v-pills-tabContent">
+                                            {renderDefaultCinemaUnitMovie()}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            {renderCinemaSection()}
+                            {/* <div className="tab-pane fade" id="v-pills-CGV" role="tabpanel" aria-labelledby="CGV">CGV</div> */}
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     );

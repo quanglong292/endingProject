@@ -1,8 +1,5 @@
 import axios from "axios";
 
-
-const user = JSON.parse(localStorage.getItem("userLogin"))
-export const token = user.accessToken
 export const getUsers = () => {
     return (dispatch) => {
         axios({
@@ -12,7 +9,7 @@ export const getUsers = () => {
             dispatch(getUsersSucc(res.data))
         })
     }
-} 
+}
 
 const getUsersSucc = (res) => {
     return {
@@ -22,6 +19,8 @@ const getUsersSucc = (res) => {
 }
 
 export const updateUsers = (taiKhoan, matKhau, email, soDt, maNhom, maLoaiNguoiDung, hoTen) => {
+    const user = JSON.parse(localStorage.getItem("userLogin"))
+    const token = user.accessToken
     return (dispatch) => {
         axios({
             method: "PUT",
@@ -53,6 +52,8 @@ const putUsersSucc = (res) => {
 }
 
 export const addUsers = (taiKhoan, matKhau, email, soDt, maNhom, maLoaiNguoiDung, hoTen) => {
+    const user = JSON.parse(localStorage.getItem("userLogin"))
+    const token = user.accessToken
     return (dispatch) => {
         axios({
             method: "POST",
@@ -84,6 +85,8 @@ const addUsersSucc = (res) => {
 }
 
 export const deleteUsers = (taiKhoan) => {
+    const user = JSON.parse(localStorage.getItem("userLogin"))
+    const token = user.accessToken
     return (dispatch) => {
         axios({
             method: "DELETE",
@@ -96,7 +99,7 @@ export const deleteUsers = (taiKhoan) => {
             alert("Xoa thanh cong");
         })
     }
-} 
+}
 
 const deleteUsersSucc = (res) => {
     return {

@@ -3,6 +3,7 @@ import { GET_CINEMAUNIT_SUCCESS, GET_CINEMAUNIT_FAILED, GET_CINEMA_SUCCESS} from
 const initialState = {
     cinemaUnit: [],
     cinema: [],
+    defaultCinema: {},
     err: "",
     toDay: '2019-1-1',
 }
@@ -17,7 +18,10 @@ const getCinemaUnit = (state = initialState, action) => {
             return {...state, err: payload}
         }
         case GET_CINEMA_SUCCESS: {
-            return {...state, cinema: payload}
+            return {...state, cinema: payload.splice(1, payload.length)}
+        };
+        case "GET_DEFAULT_CINEMA": {
+            return {...state, defaultCinema: payload}
         }
         default:
             return state;

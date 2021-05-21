@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../../assets/img/main-logo.png";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -6,18 +6,28 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 library.add(
   faUserCircle,
 )
 
 function Nav () {
   const {user} = useSelector(state => state.booking)
+  const dispatch = useDispatch()
+
+  
+  useEffect(() => {
+    dispatch({
+      // Clear validation login 
+      type: "CLEAR",
+      payload: ""
+    })
+  }, [])
 
   const isLogin = () => {
     if (user == null) {
       return (
-        <NavLink className="nav-link" to="/login">
+        <NavLink className="nav-link" to="/login" >
           <FontAwesomeIcon
             icon={faUserCircle}
             size="2x"
