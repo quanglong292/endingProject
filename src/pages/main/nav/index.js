@@ -11,11 +11,11 @@ library.add(
   faUserCircle,
 )
 
-function Nav () {
-  const {user} = useSelector(state => state.booking)
+function Nav() {
+  const { user } = useSelector(state => state.booking)
   const dispatch = useDispatch()
 
-  
+
   useEffect(() => {
     dispatch({
       // Clear validation login 
@@ -44,6 +44,16 @@ function Nav () {
           <span className="">Xin chào {user.hoTen}</span>
           <span className="spaceingLine">|</span>
         </a>
+      )
+    }
+  }
+
+  const isAdmin = () => {
+    if (user?.maLoaiNguoiDung === "QuanTri") {
+      return (
+        <li className="nav-item">
+          <NavLink to="/admin/userlist" className="nav-link">Admin</NavLink>
+        </li>
       )
     }
   }
@@ -86,12 +96,13 @@ function Nav () {
               Ứng dụng
             </a>
           </li>
+          {isAdmin()}
         </ul>
         <ul className="navbar-nav">
           <li className="nav-item ">
             {isLogin()}
           </li>
-          
+
           <li className="nav-item dropdown cityList">
             <a
               className="nav-link dropdown-toggle cityList"
@@ -106,10 +117,10 @@ function Nav () {
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
               <a className="dropdown-item" href="#">
-              Tp. Da Nang
+                Tp. Da Nang
               </a>
               <a className="dropdown-item" href="#">
-              Tp. Can Tho
+                Tp. Can Tho
               </a>
             </div>
           </li>
