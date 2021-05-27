@@ -10,9 +10,11 @@
         margin: 55px 100px 0 0;
         position: fixed;
         z-index: 1;
-        background-color: rgba(145, 160, 160, 0.315);
+        background-color: white;
         color: rgb(90, 88, 88);
+        box-shadow: 3px 4px 10px 4px rgba(0, 0, 0, 0.09);
         h3 {
+            color: black;
             border-bottom: 1px solid black;
             font-weight: bold;
         }
@@ -20,7 +22,7 @@
             float: right;
         }
         span:last-child {
-            color: rgb(55, 163, 28);
+            color: tomato;
             font-weight: bold;
         }
         button {
@@ -45,11 +47,13 @@
             }
         }
         .listChairContainer {
+            position: relative;
             width: 60%;
             padding: 25px 25px;
-            background-color: rgba(145, 160, 160, 0.315);
+            background-color: white;
             margin: 20px;
             border-radius: 5px;
+            box-shadow: 3px 4px 10px 4px rgba(0, 0, 0, 0.09);
             .chairType {
                 margin-bottom: 20px;
                 justify-content: space-around;
@@ -60,19 +64,19 @@
                     border-radius: 2px;
                 }
                 .free {
-                    background-color: #FF6347;
+                    background-color: #ff6347;
                 }
                 .choosing {
-                    background-color: #37A31C;
+                    background-color: #37a31c;
                 }
                 .noFree {
-                    background-color: #4B4848;
+                    background-color: #4b4848;
                 }
             }
             .screen {
                 width: 97%;
                 padding: 10px;
-                background-color: rgb(80, 77, 77);
+                background-color: #0f0f0f;
                 color: white;
                 text-align: center;
                 margin-bottom: 20px;
@@ -85,8 +89,7 @@
                 justify-content: space-evenly;
                 .listMid {
                     display: grid;
-                    grid-template-columns: auto auto auto auto auto auto ;
-    
+                    grid-template-columns: auto auto auto auto auto auto;
                 }
                 button {
                     padding: 5px;
@@ -109,6 +112,22 @@
                     &:hover {
                         background-color: rgb(75, 72, 72);
                     }
+                }
+            }
+            .chairAlphabet {
+                position: absolute;
+                bottom: 15px;
+                right: 16px;
+                background: black;
+                width: 30px;
+                text-align: center;
+                padding-top: 5px;
+                border-radius: 5px;
+                p {
+                    margin-bottom: 15px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: white;
                 }
             }
         }
