@@ -1,5 +1,10 @@
 .detailMovieContainer {
     width: 100%;
+    padding-bottom: 100px;
+    h2 {
+        text-align: center;
+        color: #fe7961;
+    }
     .detailContent {
         width: 80%;
         display: flex;
@@ -90,7 +95,7 @@
 }
 .detailTimeLine {
     width: 70%;
-    margin: 10% auto;
+    margin: 50px auto;
 }
 .detailMovieTimeContainer {
     margin: 5px 0 5px 0;

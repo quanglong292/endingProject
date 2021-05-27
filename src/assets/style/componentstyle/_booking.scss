@@ -1,12 +1,13 @@
 .booking {
     display: flex;
+    padding: 20px 0;
     .totalAmount {
         width: 25%;
         height: 200px;
         top: 70px;
         right: 0;
         padding: 15px;
-        margin: 20px 100px 0 0;
+        margin: 55px 100px 0 0;
         position: fixed;
         z-index: 1;
         background-color: rgba(145, 160, 160, 0.315);
@@ -35,12 +36,39 @@
         }
     }
     .bookContainer {
+        .bookingContent {
+            width: 60%;
+            margin-left: 20px;
+            span {
+                font-weight: bold;
+                font-style: italic;
+            }
+        }
         .listChairContainer {
             width: 60%;
             padding: 25px 25px;
             background-color: rgba(145, 160, 160, 0.315);
             margin: 20px;
             border-radius: 5px;
+            .chairType {
+                margin-bottom: 20px;
+                justify-content: space-around;
+                .chairCircula {
+                    height: 25px;
+                    width: 25px;
+                    margin-right: 10px;
+                    border-radius: 2px;
+                }
+                .free {
+                    background-color: #FF6347;
+                }
+                .choosing {
+                    background-color: #37A31C;
+                }
+                .noFree {
+                    background-color: #4B4848;
+                }
+            }
             .screen {
                 width: 97%;
                 padding: 10px;

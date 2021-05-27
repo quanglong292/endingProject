@@ -7,7 +7,7 @@ import { bookingList, bookingTicket } from '../../../store/actions/booking.actio
 function Booking () {
     let [amount, setAmount] = useState(0);
     const {maLichChieu} = useParams();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch(); 
     const history = useHistory();
     useEffect(() => {
         dispatch(bookingList(maLichChieu));
@@ -101,9 +101,23 @@ function Booking () {
                 <div className="booking">
                     <div class="bookContainer">
                         <div className="bookingContent">
-                            <span>ten phim: {renderMovieName()}</span>
+                            <span>Tên phim: {renderMovieName()}</span>
                         </div>
                         <div className="listChairContainer">
+                            <div className="chairType d-flex">
+                                <div className="d-flex align-items-center">
+                                    <div className="chairCircula free"></div>
+                                    <span>Ghế trống</span>
+                                </div>
+                                <div className="d-flex align-items-center">
+                                    <div className="chairCircula choosing"></div>
+                                    <span>Đang chọn</span>
+                                </div>
+                                <div className="d-flex align-items-center">
+                                    <div className="chairCircula noFree"></div>
+                                    <span>Đã đặt</span>
+                                </div>
+                            </div>
                             <div className="screen">SCREEN</div>
                             <div className="listChair">
                                 <div className="listLeft">

@@ -15,6 +15,7 @@
         background-color: rgba(109, 112, 116, 0.452);
         padding: 50px;
         box-shadow: 5px 10px 10px #1f1e1ec0;
+        backdrop-filter: blur(3px);
         h3 {
             color: white;
             text-align: center;
@@ -35,6 +36,9 @@
                 background-color: rgb(99, 183, 223);
                 color: white;
                 margin-top: 50px;
+                &:hover {
+                    background-color: rgb(64, 175, 226)
+                }
             }
         }
     }

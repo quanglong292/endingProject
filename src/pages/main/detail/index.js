@@ -151,6 +151,7 @@ function Detail() {
               </div>
         </div>
 
+      <h2>Chọn suất chiếu</h2>
       <div className="detailTimeLine TabpaneContainer" id="detailTimeLine">
         <div className="row ">
           <div className="col-3">
