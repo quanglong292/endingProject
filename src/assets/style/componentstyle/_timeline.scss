@@ -2,27 +2,29 @@
     h2 {
         text-align: center;
         margin-bottom: 20px;
+        color: #fe7961;
     }
     margin: 20px 0;
 }
 .TabpaneContainer {
-    width: 75%; 
+    width: 1340px; 
+    max-width: 1440px;
     margin: 0 auto; 
-    height: 500px; 
+    height: 600px;
     overflow: auto;
-    border: 2px solid #4b4a4a54;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
     padding: 15px;
     border-radius: 10px;
     &::-webkit-scrollbar {
         display: none;
     }
-    .col-3 {
-        border-right: 2px solid #4b4a4a54;
+    .col-5, .mainLogo, .detailLogo{
+        border-right: 1px solid #4b4a4a54;
         // border-bottom: 2px solid #4b4a4a54;
         .nav-link {
-            border-bottom: 2px solid #4b4a4a54;
+            border-bottom: 1px solid #4b4a4a54;
             border-radius: 0;
-            text-align: center;
+            // text-align: center;
             background-color: transparent;
             opacity: 0.7;
             color: #108f3e;
@@ -36,8 +38,17 @@
             // background-color: transparent;
         }
     }
+    .mainLogo {
+        max-width: 8%;
+    }
+    .detailLogo {
+        .nav {
+            text-align: center;
+        }
+    }
 }
 .movieAndTime {
+    margin-bottom: 10px;
     .cimenaUnitMovieName {
         display: flex;
         align-items: center;
@@ -62,8 +73,9 @@
         }
     }
     .cimenaUnitMovieTime {
+        margin: 10px 0;
         display: grid;
-        grid-template-columns: auto auto auto auto auto;
+        grid-template-columns: auto auto auto auto;
         justify-content: flex-start;
         .timeLineTime {
             padding: 5px 8px;

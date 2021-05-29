@@ -7,7 +7,7 @@ import ThemNguoiDung from './themNd';
 function MainAdminPage () {
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getUsers());
+        dispatch(getUsers(1));
     }, [])
     const {users} = useSelector(state => state.users)
 
@@ -16,7 +16,7 @@ function MainAdminPage () {
     }
 
     const renderUser = () => {
-        return users.map((item, index) => {
+        return users?.items?.map((item, index) => {
             return (
                 <tr key={index}>
                     <th scope="row">{index+1}</th>

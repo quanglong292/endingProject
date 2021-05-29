@@ -30,7 +30,7 @@ function TimeLine() {
                     aria-labelledby={maCumRap}
                 >
                     <div className="row">
-                        <div className="col-3">
+                        <div className="col-5">
                             <div
                                 className="nav flex-column nav-pills"
                                 id="v-pills-tab"
@@ -41,7 +41,7 @@ function TimeLine() {
                             </div>
                         </div>
                         {/* BHD section-unit */}
-                        <div className="col-9">
+                        <div className="col-7">
                             <div className="tab-content" id="v-pills-tabContent">
                                 {handleRenderCinemaUnitMovies()}
                             </div>
@@ -220,7 +220,7 @@ function TimeLine() {
             <h2>Lịch chiếu</h2>
             <div className="TabpaneContainer">
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-1 mainLogo">
                         <div
                             className="nav flex-column nav-pills"
                             id="v-pills-tab"
@@ -247,17 +247,17 @@ function TimeLine() {
                     </div>
 
                     {/* BHD section */}
-                    <div className="col-9">
+                    <div className="col-11">
                         <div class="tab-content" id="v-pills-tabContent">
 
                             <div className="tab-pane fade show active" id={"v-pills-" + defaultCinema[0]?.maHeThongRap} role="tabpanel" aria-labelledby={defaultCinema[0]?.maHeThongRap}>
                                 <div className="row">
-                                    <div className="col-3">
+                                    <div className="col-5">
                                         <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                             {renderDefaultCinemaUnit()}
                                         </div>
                                     </div>
-                                    <div className="col-9">
+                                    <div className="col-7">
                                         <div className="tab-content" id="v-pills-tabContent">
                                             {renderDefaultCinemaUnitMovie()}
                                         </div>
