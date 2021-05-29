@@ -52,7 +52,7 @@ function Nav() {
     if (user?.maLoaiNguoiDung === "QuanTri") {
       return (
         <li className="nav-item">
-          <NavLink to="/admin/userlist" className="nav-link">Admin</NavLink>
+          <NavLink to="/admin/movies" className="nav-link">Admin</NavLink>
         </li>
       )
     }

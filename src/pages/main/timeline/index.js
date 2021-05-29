@@ -85,19 +85,19 @@ function TimeLine() {
                 tenPhim.push(danhSachPhim.maPhim)
             }
         })
-        // console.log(tenPhim);
         let slicedTenPhim = tenPhim.slice(0, 3);
-        // console.log("sliced:", slicedTenPhim);
         if (slicedTenPhim.length !== 0) {
             return (
-                <>
+                <div className="cimenaUnitMovieName">
                     <img src={slicedTenPhim[0]} width="50" height="50"></img>
                     <div className="unitMovieNameContent">
                         <span className="contentName"><span>C13</span>{slicedTenPhim[1]}</span>
                         <div className="miniContent">100 phút - Mã phim: {slicedTenPhim[2]}</div>
                     </div>
-                </>
+                </div>
             );
+        } else {
+            <div className="cimenaUnitMovieName d-none"></div>
         }
     };
 
@@ -105,18 +105,17 @@ function TimeLine() {
         var dateFormat = require("dateformat");
         let now = new Date(2019, 0);
         let nowFormated = dateFormat(now, "dd-mm-yy");
-        // console.log("nowDate: ", nowFormated);
         let filteredApiDateArr = danhSachPhim.lstLichChieuTheoPhim.filter((item) => dateFormat(item.ngayChieuGioChieu, "dd-mm-yy") === nowFormated)
-        // console.log(danhSachPhim.lstLichChieuTheoPhim);
-        let mappedApiDate = filteredApiDateArr.map((item, index) => {
+        return filteredApiDateArr.map((item, index) => {
             let formatedApiMovieTime = dateFormat(item.ngayChieuGioChieu, "HH:MM")
-            return (
-                <div className="timeLineTime">
-                    <NavLink className="startTime" to={`/booking/${item.maLichChieu}`}>{formatedApiMovieTime}</NavLink> ~ 11:00
-                </div>
-            )
+            if (index !== 0) {
+                return (
+                    <div className="timeLineTime">
+                        <NavLink className="startTime" to={`/booking/${item.maLichChieu}`}>{formatedApiMovieTime}</NavLink> ~ 11:00
+                    </div>
+                )
+            }
         })
-        return mappedApiDate;
     };
 
 
@@ -134,9 +133,7 @@ function TimeLine() {
                         {item.danhSachPhim.map((item, index) => {
                             return (
                                 <div key={index} className="movieAndTime">
-                                    <div className="cimenaUnitMovieName">
-                                        {renderCinemaUnitMovieName(item)}
-                                    </div>
+                                    {renderCinemaUnitMovieName(item)}
                                     <div className="cimenaUnitMovieTime">
                                         {renderCinemaUnitMovieTime(item)}
                                     </div>
@@ -201,9 +198,7 @@ function TimeLine() {
                     {item.danhSachPhim.map((item, index) => {
                         return (
                             <div key={index} className="movieAndTime">
-                                <div className="cimenaUnitMovieName">
                                     {renderCinemaUnitMovieName(item)}
-                                </div>
                                 <div className="cimenaUnitMovieTime">
                                     {renderCinemaUnitMovieTime(item)}
                                 </div>

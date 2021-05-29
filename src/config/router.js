@@ -25,14 +25,14 @@ export const mainRouter = [
 
 export const adminRouter = [
     {
-        path:"/admin/userlist",
-        exact: true,
-        Component: MainAdminPage,
-    },
-    {
         path:"/admin/movies",
         exact: true,
         Component: MoviesAdmin,
+    },
+    {
+        path:"/admin/userlist",
+        exact: true,
+        Component: MainAdminPage,
     }
 ]
 

@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers,updateUsers, addUsers, deleteUsers} from '../../../store/actions/admin/users.action';
+import { getUsers, updateUsers, addUsers, deleteUsers } from '../../../store/actions/admin/users.action';
 import CapNhatModal from './capnhat.modal';
 import ThemNguoiDung from './themNd';
 
-function MainAdminPage () {
+function MainAdminPage() {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getUsers(1));
     }, [])
-    const {users} = useSelector(state => state.users)
-
+    const { users } = useSelector(state => state.users)
     const handleDelete = (tk) => {
         dispatch(deleteUsers(tk))
     }
@@ -19,7 +18,7 @@ function MainAdminPage () {
         return users?.items?.map((item, index) => {
             return (
                 <tr key={index}>
-                    <th scope="row">{index+1}</th>
+                    <th scope="row">{index + 1}</th>
                     <td>{item.taiKhoan}</td>
                     <td>{item.hoTen}</td>
                     <td>{item.email}</td>
@@ -27,15 +26,32 @@ function MainAdminPage () {
                     <td>{item.matKhau}</td>
                     <td>{item.maLoaiNguoiDung}</td>
                     <td className="myBtn">
-                        <CapNhatModal dispatch={dispatch} updateUsers={updateUsers} item={item} index={index}/>
+                        <CapNhatModal dispatch={dispatch} updateUsers={updateUsers} item={item} index={index} />
                         {/* <button className="btn btn-outline-primary">Sửa</button> */}
-                        <button className="btn btn-outline-danger" onClick={() => {handleDelete(item.taiKhoan)}}>Xóa</button>
+                        <button className="btn btn-outline-danger" onClick={() => { handleDelete(item.taiKhoan) }}>Xóa</button>
                     </td>
                 </tr>
             )
         })
     }
-    
+
+    const handleNumPage = (num) => {
+        dispatch(getUsers(num));
+    }
+    const handlePagiPages = () => {
+        const pages = [];
+        for (var i = 1; i <= users.totalPages; i++) {
+            pages.push(i)
+        }
+        console.log(pages);
+        return (
+            pages.map((item, index) => {
+                return (
+                    <li className="page-item" onClick={() => handleNumPage(item)}><a className="page-link" href="#">{item}</a></li>
+                )
+            })
+        )
+    }
     return (
         <>
             <div className="usersTable">
@@ -61,9 +77,17 @@ function MainAdminPage () {
                 <form className="inputSearch">
                     <input placeholder="Search" id="searching"></input>
                 </form>
-                <ThemNguoiDung addUsers={addUsers} dispatch={dispatch} usersList={users}/>
+                <ThemNguoiDung addUsers={addUsers} dispatch={dispatch} usersList={users.items} />
+                <nav aria-label="Page navigation example ">
+                    <ul className="pagination myPagi">
+                        {/* <li className="page-item"><a className="page-link" href="#" onClick={() => handleNumPage(1)}>1</a></li>
+                        <li className="page-item"><a className="page-link" href="#" onClick={() => handleNumPage(2)}>2</a></li>
+                        <li className="page-item"><a className="page-link" href="#" onClick={() => handleNumPage(3)}>3</a></li> */}
+                        {handlePagiPages()}
+                    </ul>
+                </nav>
             </div>
-            
+
         </>
     )
 }

@@ -21,6 +21,7 @@
     .col-5, .mainLogo, .detailLogo{
         border-right: 1px solid #4b4a4a54;
         // border-bottom: 2px solid #4b4a4a54;
+        height: 100%;
         .nav-link {
             border-bottom: 1px solid #4b4a4a54;
             border-radius: 0;
@@ -48,10 +49,10 @@
     }
 }
 .movieAndTime {
-    margin-bottom: 10px;
     .cimenaUnitMovieName {
         display: flex;
         align-items: center;
+        margin: 10px 0;
         .unitMovieNameContent {
             .contentName {
                 font-size: 16px;
@@ -73,16 +74,15 @@
         }
     }
     .cimenaUnitMovieTime {
-        margin: 10px 0;
         display: grid;
         grid-template-columns: auto auto auto auto;
         justify-content: flex-start;
+        gap: 2px;
         .timeLineTime {
             padding: 5px 8px;
             background-color: rgba(246,246,246,.5);
             border-radius: 3px;
             border: 1px solid #e4e4e4;
-            margin: 2px 2px 2px 0;
             display: inline;
             text-align: center;
             font-size: smaller;
@@ -94,6 +94,11 @@
                 font-size: 17px;
                 font-style: normal;
             }
+        }
+    }
+    &:first-child {
+        .cimenaUnitMovieName {
+            margin-top: 0;
         }
     }
 }

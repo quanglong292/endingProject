@@ -4,7 +4,7 @@ export const getUsers = (num) => {
     return (dispatch) => {
         axios({
             method: "GET",
-            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP01&soTrang=${num}&soPhanTuTrenTrang=50`
+            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP01&soTrang=${num}&soPhanTuTrenTrang=200`
         }).then((res) => {
             dispatch(getUsersSucc(res.data))
         })
