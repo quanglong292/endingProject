@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Playground from '../../../playground'
+import AppAds from '../../components/AppAds'
 import TixCarousel from '../carousel'
 import MovieSlider from '../movieslider'
 import Nav from '../nav'
@@ -15,7 +16,7 @@ export default function Home() {
          <TimeLine/>
          {/* <Playground/> */}
          {/* <TixApp/> */}
-         <NavLink to="/admin/userlist">admin</NavLink>
+         <AppAds/>
         </>
     )
 }
