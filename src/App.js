@@ -1,4 +1,3 @@
-import "./App.css";
 import Nav from "./pages/main/nav";
 import "../src/assets/style/index.scss";
 import TixCarousel from "./pages/main/carousel";

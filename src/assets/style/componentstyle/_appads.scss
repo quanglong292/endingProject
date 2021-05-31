@@ -3,4 +3,39 @@
     max-width: 100%;
     height: 650px;
     margin: auto;
+<<<<<<< HEAD
 }
+=======
+    margin-top: 100px;
+    padding-top: 40px;
+    .content {
+        width: 50%;
+        padding-right: 200px;
+        p {
+            &:last-child {
+                margin-top: 10px;
+                a {
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+    .phone {
+        position: relative;
+        .phone-border {
+        }
+        .carousel {
+            position: absolute;
+            top: 18px;
+            left: 19px;
+            width: 257px;
+            .carousel-inner {
+                border-radius: 30px;
+            }
+        }
+    }
+}
+>>>>>>> 8f4de04e7fcbe8d28830d197455963a1cd1d0db7

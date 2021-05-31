@@ -53,13 +53,15 @@ function Detail() {
     const filteredApiDateArr = item.lichChieuPhim.filter(item => dateFormat(item.ngayChieuGioChieu, "dd-mm-yy") === nowFormated);
     if (filteredApiDateArr.length !== 0) {
       return filteredApiDateArr.map((item, index) => {
+        let time = Date.parse(item.ngayChieuGioChieu) + 1000*60*90;
+        var date = new Date(time);
         let dateFormated = dateFormat(item.ngayChieuGioChieu, "HH:MM")
           return (
             <div class="detailMovieTime">
               <NavLink to={`/booking/${item.maLichChieu}`} className="startTime">
                   {dateFormated} 
               </NavLink>
-              &nbsp;<span className="endTime">~ 11:00</span>
+              &nbsp;<span className="endTime">~ {`${date.getHours()}: ${date.getMinutes()}`}</span>
             </div>
           );
         
@@ -151,14 +153,15 @@ function Detail() {
               </div>
         </div>
 
+      <h2>Chọn suất chiếu</h2>
       <div className="detailTimeLine TabpaneContainer" id="detailTimeLine">
         <div className="row ">
-          <div className="col-3">
+          <div className="col-2 detailLogo">
             <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
               {handleRenderCinema()}
             </div>
           </div>
-          <div className="col-9">
+          <div className="col-10">
             <div className="tab-content" id="v-pills-tabContent">
               {handleRenderMovieTimeUnit()}
             </div>
