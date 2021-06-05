@@ -67,11 +67,19 @@ function NgayGioChieu(props) {
 
     const handleNavLink = () => {
         if (user !== null) {
-            return (
-                <NavLink to={`/booking/${maLichChieu}`} className="muave-btn">
-                    Mua vé
-                </NavLink>
-            )
+            if (maLichChieu) {
+                return (
+                    <NavLink to={`/booking/${maLichChieu}`} className="muave-btn">
+                        Mua vé
+                    </NavLink>
+                )
+            } else {
+                return (
+                    <NavLink to={`/booking/${maLichChieu}`} className="muave-btn-disabled">
+                        Mua vé
+                    </NavLink>
+                )
+            }
         } else {
             return (
                 <NavLink to={`/login`} className="muave-btn-disabled">

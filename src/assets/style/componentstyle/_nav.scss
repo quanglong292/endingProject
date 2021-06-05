@@ -1,5 +1,5 @@
 .navbar {
-    box-shadow: 0 0 10px rgba(0,0,0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .loginIcon {
     vertical-align: middle;
@@ -16,4 +16,29 @@
 }
 .headingNav {
     margin: auto;
+}
+.userNav {
+    padding: 0 !important;
+    .userDropdown:hover > .dropdown-menu {
+        display: block;
+    }
+    .btn-danger {
+        background-color: transparent;
+        color: rgba(0,0,0,.5);
+        border: none;
+        &:hover {
+            background-color: #FB4226;
+        }
+    }
+    .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+        background-color: #FB4226 !important;
+    }
+    .dropdown-item {
+        cursor: pointer;
+    }
+}
+
+.dropdown > .dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
 }

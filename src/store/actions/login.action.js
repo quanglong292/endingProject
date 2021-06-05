@@ -1,9 +1,9 @@
 import axios from "axios";
-import { LOGIN_SUCCESS, LOGIN_FAILED} from "../constanct/user.constanct";
+import { LOGIN_SUCCESS, LOGIN_FAILED } from "../constanct/user.constanct";
 
 export const postLogin = (taikhoan, matkhau, history) => {
     return (dispatch) => {
-        axios ({
+        axios({
             method: "POST",
             url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap`,
             data: {
@@ -21,6 +21,20 @@ export const postLogin = (taikhoan, matkhau, history) => {
     }
 }
 
+export const getUserDetail = (taiKhoan) => {
+    return (dispatch) => {
+        axios({
+            method: "POST",
+            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan`,
+            data: {taiKhoan}
+        }).then((res) => {
+            dispatch(userDetailSuccess(res.data))
+        }).catch((err) => {
+            console.log("Lỗi lấy thông tin người dùng: ", err);
+        })
+    }
+}
+
 const loginSucess = (res) => {
     return {
         type: LOGIN_SUCCESS,
@@ -32,6 +46,13 @@ const loginFailed = () => {
     return {
         type: LOGIN_FAILED,
         payload: "Tài khoản hoặc mật khẩu không đúng"
+    }
+}
+
+const userDetailSuccess = (res) => {
+    return {
+        type: "USERDETAIL_SUCCESS",
+        payload: res
     }
 }
 

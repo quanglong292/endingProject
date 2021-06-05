@@ -4,6 +4,7 @@ import { LOGIN_FAILED, LOGIN_SUCCESS } from "../constanct/user.constanct";
 const initialState = {
   listChair: [],
   user: null,
+  userChitiet: [],
   err: "",
 }
 
@@ -37,6 +38,9 @@ const getBookingReducer = (state = initialState, action) => {
     };
     case "CLEAR": {
       return {...state, err: payload}
+    };
+    case "USERDETAIL_SUCCESS": {
+      return {...state, userChitiet: payload}
     }
 
     default:

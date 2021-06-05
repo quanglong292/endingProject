@@ -1,5 +1,6 @@
 import MoviesAdmin from "../pages/admin/movies";
 import MainAdminPage from "../pages/admin/userlist";
+import UserDetails from "../pages/components/UserDetails";
 import Booking from "../pages/main/booking";
 import Detail from "../pages/main/detail";
 import Home from "../pages/main/home";
@@ -20,6 +21,11 @@ export const mainRouter = [
         path: "/booking/:maLichChieu",
         exact: false,
         Component: Booking,
+    },
+    {
+        path: "/components/UserDetails/:tk",
+        exact: true,
+        Component: UserDetails,
     }
 ]
 

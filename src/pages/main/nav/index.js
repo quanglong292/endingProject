@@ -35,14 +35,23 @@ function Nav() {
             className="loginIcon"
           />
           <span className="">Đăng nhập</span>
-          <span className="spaceingLine">|</span>
+          {/* <span className="spaceingLine">|</span> */}
         </NavLink>
       )
     } else {
       return (
-        <a className="nav-link">
-          <span className="">Xin chào {user.hoTen}</span>
-          <span className="spaceingLine">|</span>
+        <a className="nav-link userNav">
+          <div className="dropdown userDropdown">
+            <button className="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Xin chào {user.hoTen}
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <NavLink className="dropdown-item" to={`/components/UserDetails/${user.taiKhoan}`} >Chi tiết</NavLink>
+              <a className="dropdown-item" onClick={() => {window.location.reload()}}>Đăng xuất</a>
+            </div>
+          </div>
+
+          {/* <span className="spaceingLine">|</span> */}
         </a>
       )
     }
@@ -52,11 +61,7 @@ function Nav() {
     if (user?.maLoaiNguoiDung === "QuanTri") {
       return (
         <li className="nav-item">
-<<<<<<< HEAD
-          <NavLink to="/admin/userlist" className="nav-link">Admin</NavLink>
-=======
           <NavLink to="/admin/movies" className="nav-link">Admin</NavLink>
->>>>>>> 8f4de04e7fcbe8d28830d197455963a1cd1d0db7
         </li>
       )
     }
@@ -107,7 +112,7 @@ function Nav() {
             {isLogin()}
           </li>
 
-          <li className="nav-item dropdown cityList">
+          {/* <li className="nav-item dropdown cityList">
             <a
               className="nav-link dropdown-toggle cityList"
               href="#"
@@ -127,7 +132,7 @@ function Nav() {
                 Tp. Can Tho
               </a>
             </div>
-          </li>
+          </li> */}
         </ul>
       </div>
     </nav>
