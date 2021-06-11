@@ -1,12 +1,26 @@
 import axios from "axios";
 
-export const getUsers = (num) => {
+export const getPartUsers = (num) => {
     return (dispatch) => {
         axios({
             method: "GET",
             url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang?MaNhom=GP01&soTrang=${num}&soPhanTuTrenTrang=200`
         }).then((res) => {
             dispatch(getUsersSucc(res.data))
+        })
+    }
+}
+
+export const getAllUsers = () => {
+    return (dispatch) => {
+        axios({
+            method: "GET",
+            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`
+        }).then((res) => {
+            dispatch({
+                type: "GET_ALLUSER",
+                payload: res.data
+            })
         })
     }
 }
@@ -105,5 +119,23 @@ const deleteUsersSucc = (res) => {
     return {
         type: "DELETE_USERSSUCCESS",
         payload: res
+    }
+}
+
+export const postRegis = (data, history) => {
+    return (dispatch) => {
+        axios({
+            method: "POST",
+            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy`,
+            data: {
+                data
+            }
+        }).then(res => {
+            dispatch({
+                type: "POST_REGISTER",
+                payload: res.data
+            });
+            history.goBack();
+        }).catch(err => alert("Error!", err))
     }
 }

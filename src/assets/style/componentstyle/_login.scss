@@ -41,5 +41,26 @@
                 }
             }
         }
+        .login-router {
+            text-align: center;
+            margin-top: 10px;
+            a {
+                color: white;
+            }
+        }
+        .regis-router {
+            text-align: center;
+            margin-top: 10px;
+            a {
+                color: white;
+                &:hover span {
+                    display: inline;
+                }
+                span {
+                    display: none;
+                    margin-right: 5px;
+                }
+            }
+        }
     }
 }

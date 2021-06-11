@@ -4,7 +4,7 @@
     overflow: scroll;
     .table {
         width: 100%;
-        border: 2px solid black;
+        border: 2px solid rgba(129, 125, 125, 0.3);
     }
 }
 
@@ -13,6 +13,12 @@
         input, select, button {
             width: 50%;
             float: right;
+        }
+        .uploadImg-input {
+            input {
+                width: 100%;
+                float: left;
+            }
         }
     }
 }

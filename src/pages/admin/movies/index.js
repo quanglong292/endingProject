@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovieListPagination } from '../../../store/actions/movieList.actions';
 import ThemPhim from './themPhim';
+import UpImg from './upImg';
 
 export default function MoviesAdmin() {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export default function MoviesAdmin() {
                     <td scope="col">{item.danhGia}</td>
                     <td className="d-flex">
                         <button className="btn btn-outline-success mr-2">Sửa</button>
-                        <button className="btn btn-outline-warning">Delete</button>
+                        <button className="btn btn-outline-warning">Xóa</button>
                     </td>
                 </tr>
             )
@@ -32,7 +33,7 @@ export default function MoviesAdmin() {
     const handleTotalPage = () => {
         let array = [];
         for (var i = 0; i < movieListPagi.movieListPagi.totalPages; i++) {
-            array.push(String(i+1))
+            array.push(String(i + 1))
         }
         return array.map((item, index) => {
             return (
@@ -47,7 +48,11 @@ export default function MoviesAdmin() {
     return (
         <>
             <div className="moviesTable">
-                <ThemPhim dispatch={dispatch} />
+                <div className="d-flex">
+                    <ThemPhim dispatch={dispatch} />
+                    <UpImg dispatch={dispatch} />
+                </div>
+
                 <nav aria-label="Page navigation example">
                     <ul className="pagination">
                         {handleTotalPage()}

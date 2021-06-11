@@ -1,14 +1,15 @@
 import axios from "axios";
 
-export const addMovies = (maPhim, tenPhim, biDanh, trailer, hinhAnh, moTa, maNhom, ngayKhoiChieu, danhGia) => {
+export const addMovies = (data) => {
+    // maPhim, tenPhim, biDanh, trailer, hinhAnh, moTa, maNhom, ngayKhoiChieu, danhGia
     const user = JSON.parse(localStorage.getItem("userLogin"))
     const token = user.accessToken
     return (dispatch) => {
         axios({
             method: "POST",
-            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhim`,
+            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhimUploadHinh`,
             data: {
-                maPhim, tenPhim, biDanh, trailer, hinhAnh, moTa, maNhom, ngayKhoiChieu, danhGia,
+                data
             },
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -16,6 +17,9 @@ export const addMovies = (maPhim, tenPhim, biDanh, trailer, hinhAnh, moTa, maNho
         }).then((res) => {
             alert("Thêm phim thành công")
             dispatch(addMoviesSucc(res.data))
+        }).catch((err) => {
+            alert("Errors found see in console!")
+            console.log(err);
         })
     }
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { getPartUsers } from '../../../store/actions/admin/users.action';
 import ValidaUser from './valida.userlist';
 
 export default function ThemNguoiDung({ addUsers, dispatch, usersList }) {
@@ -30,6 +31,7 @@ export default function ThemNguoiDung({ addUsers, dispatch, usersList }) {
         setErrors(ValidaUser(users, isExist))
         if (isTrue) {
             dispatch(addUsers(users.taiKhoan, users.matKhau, users.email, users.soDt, users.maNhom, users.maLoaiNguoiDung, users.hoTen));
+            dispatch(getPartUsers(1));
         }
     }
 

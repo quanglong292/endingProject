@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router'
 import { getUserDetail } from '../../store/actions/login.action';
@@ -13,6 +13,7 @@ export default function UserDetails() {
         dispatch(getUserDetail(tk));
     }, [])
     const { userChitiet, user } = useSelector(state => state.booking);
+    let [ticketDetail, setTicketDetail] = useState([])
 
     const renderDetail = () => {
         if (userChitiet) {
@@ -39,19 +40,38 @@ export default function UserDetails() {
                     <td>{item.tenPhim}</td>
                     <td>{item.giaVe}</td>
                     <td>{item.thoiLuongPhim}'</td>
-                    <td>{handleChairList(item.danhSachGhe)}</td>
+                    <td>{item.danhSachGhe.length}</td>
+                    <td className="ticketDetailContain">
+                        <a onClick={() => {setTicketDetail(ticketDetail = item.danhSachGhe)}}>
+                            Chi tiết
+                        </a>
+                    </td>
                 </tr>
             )
         })
     }
 
-    const handleChairList = (chairs) => {
-        const counter = chairs.length
-        return counter
-        // return chairs.map((item, index) => {
-        //     return
-        // })
+    const handleTicketDetail = () => {
+        if (ticketDetail.length !== 0) {
+            return (
+                <div className="ticketDetail">
+                    <h2>Thông tin vé</h2>
+                    <div>Rạp: {ticketDetail[0]?.tenHeThongRap}</div>
+                    <div>Tên rạp: {ticketDetail[0]?.tenRap}</div>
+                    <div className="chairID">Mã ghế: {handleSoGhe(ticketDetail)}</div>
+                </div>
+            )
+        }
     }
+
+    const handleSoGhe = (detail) => {
+        return detail?.map((item, index) => {
+            return (
+                <span>{item.tenGhe} </span>
+            )
+        })
+    }
+    
 
     if (!user) {
         return (
@@ -73,6 +93,9 @@ export default function UserDetails() {
                         {renderDetail()}
                     </div>
                 </div>
+
+                {handleTicketDetail()}
+
                 <div className="orderedList">
                     <table className="table table-dark">
                         <thead>
@@ -83,7 +106,8 @@ export default function UserDetails() {
                                 <th scope="col">Tên phim</th>
                                 <th scope="col">Giá</th>
                                 <th scope="col">Thời lượng</th>
-                                <th scope="col">Số ghế</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Options</th>
                             </tr>
                         </thead>
                         <tbody>

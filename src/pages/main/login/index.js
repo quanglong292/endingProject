@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { postLogin } from '../../../store/actions/login.action';
 
 function Login() {
@@ -23,6 +24,7 @@ function Login() {
             ...userState,
             [name]: value,
         })
+        console.log(history);
     }
 
     const handleSubmit = (e) => {
@@ -43,6 +45,10 @@ function Login() {
                     {valida ? <p style={{color: "red"}}>{valida}</p> : ""}
                     <button type="submit">Đăng nhập</button>
                 </form>
+                <div className="login-router">
+                    <NavLink to="/">Home | </NavLink>
+                    <NavLink to="/register">Đăng ký</NavLink>
+                </div>
             </div>
         </div>
     )

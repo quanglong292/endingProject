@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers, updateUsers, addUsers, deleteUsers } from '../../../store/actions/admin/users.action';
+import { getPartUsers, updateUsers, addUsers, deleteUsers, getAllUsers } from '../../../store/actions/admin/users.action';
 import CapNhatModal from './capnhat.modal';
 import ThemNguoiDung from './themNd';
 
 function MainAdminPage() {
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(getUsers(1));
+        dispatch(getPartUsers(1));
+        dispatch(getAllUsers());
     }, [])
-    const { users } = useSelector(state => state.users)
+    const { users, allUser} = useSelector(state => state.users)
     const handleDelete = (tk) => {
         dispatch(deleteUsers(tk))
     }
@@ -36,7 +37,7 @@ function MainAdminPage() {
     }
 
     const handleNumPage = (num) => {
-        dispatch(getUsers(num));
+        dispatch(getPartUsers(num));
     }
     const handlePagiPages = () => {
         const pages = [];
@@ -77,12 +78,9 @@ function MainAdminPage() {
                 <form className="inputSearch">
                     <input placeholder="Search" id="searching"></input>
                 </form>
-                <ThemNguoiDung addUsers={addUsers} dispatch={dispatch} usersList={users.items} />
+                <ThemNguoiDung addUsers={addUsers} dispatch={dispatch} usersList={allUser} />
                 <nav aria-label="Page navigation example ">
                     <ul className="pagination myPagi">
-                        {/* <li className="page-item"><a className="page-link" href="#" onClick={() => handleNumPage(1)}>1</a></li>
-                        <li className="page-item"><a className="page-link" href="#" onClick={() => handleNumPage(2)}>2</a></li>
-                        <li className="page-item"><a className="page-link" href="#" onClick={() => handleNumPage(3)}>3</a></li> */}
                         {handlePagiPages()}
                     </ul>
                 </nav>

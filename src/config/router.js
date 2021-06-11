@@ -5,6 +5,7 @@ import Booking from "../pages/main/booking";
 import Detail from "../pages/main/detail";
 import Home from "../pages/main/home";
 import Login from "../pages/main/login";
+import Register from "../pages/main/register";
 
 export const mainRouter = [
     {
@@ -47,5 +48,11 @@ export const userRouter = [
         path: "/login",
         exact: true,
         Component: Login,
+    },
+    {
+        path: "/register",
+        exact: true,
+        Component: Register,
     }
+    
 ]
