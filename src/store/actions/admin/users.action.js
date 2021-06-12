@@ -139,3 +139,18 @@ export const postRegis = (data, history) => {
         }).catch(err => alert("Error!", err))
     }
 }
+
+export const searchUser = (key) => {
+    return (dispatch) => {
+        axios({
+            method: "GET",
+            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${key}`,
+            data: null,
+        }).then(res => {
+            dispatch({
+                type: "SEARCH_USER",
+                payload: res.data
+            });
+        }).catch(err => alert("Error!", err))
+    }
+}

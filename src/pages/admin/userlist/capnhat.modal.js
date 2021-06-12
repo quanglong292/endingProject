@@ -31,11 +31,11 @@ function CapNhatModal(props) {
 
     return (
         <>
-            <button type="button" className="btn btn-outline-primary" data-toggle="modal" data-target={"#exampleModal" + index}>
+            <button type="button" className="btn btn-outline-primary" data-toggle="modal" data-target={"#exampleModal" + users.taiKhoan} >
                 Sửa
             </button>
             {/* Modal */}
-            <div className="modal fade" id={"exampleModal" + index} tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id={"exampleModal" + users.taiKhoan} tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
