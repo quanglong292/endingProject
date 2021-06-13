@@ -30,3 +30,22 @@ const addMoviesSucc = (res) => {
         payload: res
     }
 }
+
+export const delMovies = (id) => {
+    const user = JSON.parse(localStorage.getItem("userLogin"))
+    const token = user.accessToken
+    return (dispatch) => {
+        axios({
+            method: "DELETE",
+            url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${id}`,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+        }).then((res) => {
+            alert("Xóa phim thành công")
+        }).catch((err) => {
+            alert("Errors found see in console!")
+            console.log("delMovies", err);
+        })
+    }
+}

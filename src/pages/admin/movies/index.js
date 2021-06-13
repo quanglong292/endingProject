@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { delMovies } from '../../../store/actions/admin/movies.actions';
 import { getMovieListPagination } from '../../../store/actions/movieList.actions';
 import ThemPhim from './themPhim';
+import CapNhatMovie from './capNhat';
 import UpImg from './upImg';
 
 export default function MoviesAdmin() {
     const dispatch = useDispatch();
     const movieListPagi = useSelector(state => state.movie)
-    // console.log("asd", movieListPagi.movieListPagi.items);
-    console.log(movieListPagi.movieListPagi);
     const renderMovies = () => {
         return movieListPagi.movieListPagi.items.map((item, index) => {
             return (
@@ -22,12 +22,16 @@ export default function MoviesAdmin() {
                     <td scope="col">{item.ngayKhoiChieu}</td>
                     <td scope="col">{item.danhGia}</td>
                     <td className="d-flex">
-                        <button className="btn btn-outline-success mr-2">Sửa</button>
-                        <button className="btn btn-outline-warning">Xóa</button>
+                        <CapNhatMovie movie={item}/>
+                        <button className="btn btn-outline-warning" onClick={() => handleDelete(item.maPhim)}>Xóa</button>
                     </td>
                 </tr>
             )
         })
+    }
+
+    const handleDelete = (id) => {
+        dispatch(delMovies(id))
     }
 
     const handleTotalPage = () => {
