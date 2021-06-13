@@ -22,7 +22,7 @@ function Detail() {
   }, []);
 
   const { movieDetail } = useSelector((state) => state.movieDetail);
-  const {user} = useSelector(state => state.booking)
+  const { user } = useSelector(state => state.booking)
 
   var dateFormat = require("dateformat");
   console.log(movieDetail);
@@ -30,7 +30,7 @@ function Detail() {
     if (movieDetail.heThongRapChieu) {
       return movieDetail.heThongRapChieu.map((item, index) => {
         return (
-          <a className="nav-link" id={item.maHeThongRap + "-tab"} data-toggle="pill" href={"#"+ item.maHeThongRap} role="tab" aria-controls={item.maHeThongRap} aria-selected="true">
+          <a className="nav-link" id={item.maHeThongRap + "-tab"} data-toggle="pill" href={"#" + item.maHeThongRap} role="tab" aria-controls={item.maHeThongRap} aria-selected="true">
             <img width="50px" src={item.logo}></img>
           </a>
         )
@@ -53,22 +53,22 @@ function Detail() {
     const filteredApiDateArr = item.lichChieuPhim.filter(item => dateFormat(item.ngayChieuGioChieu, "dd-mm-yy") === nowFormated);
     if (filteredApiDateArr.length !== 0) {
       return filteredApiDateArr.map((item, index) => {
-        let time = Date.parse(item.ngayChieuGioChieu) + 1000*60*90;
+        let time = Date.parse(item.ngayChieuGioChieu) + 1000 * 60 * 90;
         var date = new Date(time);
         let dateFormated = dateFormat(item.ngayChieuGioChieu, "HH:MM")
-          return (
-            <div class="detailMovieTime">
-              <NavLink to={`/booking/${item.maLichChieu}`} className="startTime">
-                  {dateFormated} 
-              </NavLink>
-              &nbsp;<span className="endTime">~ {`${date.getHours()}: ${date.getMinutes()}`}</span>
-            </div>
-          );
-        
+        return (
+          <div class="detailMovieTime">
+            <NavLink to={`/booking/${item.maLichChieu}`} className="startTime">
+              {dateFormated}
+            </NavLink>
+            &nbsp;<span className="endTime">~ {`${date.getHours()}: ${date.getMinutes()}`}</span>
+          </div>
+        );
+
       })
     } else {
       return (<span className="noTime">Không có suất hôm nay</span>)
-    } 
+    }
   }
 
   const handleRenderMovieTimeUnit = () => {
@@ -77,28 +77,30 @@ function Detail() {
         return (
           <div className="tab-pane fade show" id={item.maHeThongRap} role="tabpanel" aria-labelledby={item.maHeThongRap + "tab"}>
 
-              <div className="cumRap">
-                {item.cumRapChieu.map((item, index) => {return(
+            <div className="cumRap">
+              {item.cumRapChieu.map((item, index) => {
+                return (
                   <>
                     <div className="detailMovieUnitName">{item.tenCumRap}</div>
                     <div class="detailMovieTimeContainer">
-                    {handleRenderTime(item)}
-                    </div> 
+                      {handleRenderTime(item)}
+                    </div>
                   </>
-                )})}
-              </div>
+                )
+              })}
             </div>
+          </div>
         )
       })
     }
   }
 
   return (
-    <div className="detailMovieContainer">
-
-      <div className="detailContent">
+    <div className="detailMovieContainer" style={{ backgroundImage: `url(${movieDetail.hinhAnh})` }}>
+      <div className="layer">
+        <div className="detailContent">
           <div className="quickView">
-            <div className="detailImg"> 
+            <div className="detailImg">
               <img src={movieDetail.hinhAnh}></img>
             </div>
             <div className="quickViewContent">
@@ -111,7 +113,7 @@ function Detail() {
           <div className="rating">
             <div className="rateGrade">{movieDetail.danhGia}.0 Tix</div>
             <div className="rateStart">
-            <FontAwesomeIcon
+              <FontAwesomeIcon
                 icon={faStar}
                 size="1x"
                 id=""
@@ -145,30 +147,31 @@ function Detail() {
             </div>
             <div className="comments">{movieDetail.danhGia} người đánh giá</div>
           </div>
-      </div>
+        </div>
 
-      <div className="detailScript">
-              <div>
-                {movieDetail.moTa}
+        <div className="detailScript">
+          <div>
+            {movieDetail.moTa}
+          </div>
+        </div>
+        
+        <div className="detailTimeLine TabpaneContainer" id="detailTimeLine">
+        <h2>Chọn suất chiếu</h2>
+          <div className="row ">
+            <div className="col-2 detailLogo">
+              <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                {handleRenderCinema()}
               </div>
-        </div>
-
-      <h2>Chọn suất chiếu</h2>
-      <div className="detailTimeLine TabpaneContainer" id="detailTimeLine">
-        <div className="row ">
-          <div className="col-2 detailLogo">
-            <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              {handleRenderCinema()}
             </div>
-          </div>
-          <div className="col-10">
-            <div className="tab-content" id="v-pills-tabContent">
-              {handleRenderMovieTimeUnit()}
+            <div className="col-10">
+              <div className="tab-content" id="v-pills-tabContent">
+                {handleRenderMovieTimeUnit()}
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
+
     </div>
   );
 }

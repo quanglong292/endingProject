@@ -54,18 +54,21 @@
     }
     .chairID {
         margin-top: 10px;
-        span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        div {
             border: 1px solid black;
-            width: 8px;
-            height: 8px;
-            padding: 10px;
+            width: 49px;
+            height: 49px;
             border-radius: 50%;
             font-weight: 700;
             margin: 10px 5px;
+            line-height: 49px;
             &:hover {
                 color: white;
                 background: #fb4226;
-                text-decoration: underline;
+                border-color: #fb4226;
             }
         }
     }

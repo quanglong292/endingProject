@@ -67,7 +67,7 @@ export default function UserDetails() {
     const handleSoGhe = (detail) => {
         return detail?.map((item, index) => {
             return (
-                <span>{item.tenGhe} </span>
+                <div>{item.tenGhe} </div>
             )
         })
     }
